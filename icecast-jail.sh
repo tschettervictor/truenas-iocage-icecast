@@ -107,7 +107,11 @@ iocage fstab -a "${JAIL_NAME}" "${POOL_PATH}"/icecast /usr/local/etc/icecast nul
 #
 #####
 
-iocage exec "${JAIL_NAME}" pkg install icecast
+if ! iocage exec "${JAIL_NAME}" pkg install -y icecast
+then
+	echo "Failed to create jail"
+	exit 1
+fi
 iocage exec "${JAIL_NAME}" cp /usr/local/etc/icecast.xml* /usr/local/etc/icecast/
 iocage exec "${JAIL_NAME}" sysrc icecast_config="/usr/local/etc/icecast/icecast.xml"
 iocage exec "${JAIL_NAME}" sysrc icecast_enable="YES"
