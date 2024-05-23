@@ -98,6 +98,7 @@ fi
 # Create and mount directories
 mkdir -p "${POOL_PATH}"/icecast
 iocage exec "${JAIL_NAME}" mkdir -p /usr/local/etc/icecast
+iocage exec "${JAIL_NAME}" mkdir -p /var/log/icecast
 iocage fstab -a "${JAIL_NAME}" "${POOL_PATH}"/icecast /usr/local/etc/icecast nullfs rw 0 0
 
 #####
