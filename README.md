@@ -39,5 +39,7 @@ In addition, there are some other options which have sensible defaults, but can 
 Once you've downloaded the script and prepared the configuration file, run this script (`script icecast.log ./icecast-jail.sh`).  The script will run for maybe a minute.  When it finishes, your jail will be created, Icecast will be installed, and you can edit the config file to suit your needs.
 
 ### Notes
-The config file "icecast.xml" is located in `$POOL_PATH/icecast`
-The config file will need to be edited in order for icecast to work. Change the user at the end of the xml file, and make sure to uncomment that section. Once that is done, icecast should run. Make sure that the log directory is owned by whatever user you decide to run icecast with.
+* The config file "icecast.xml" is located in `$POOL_PATH/icecast`
+* Icecast will not run as root. Two things need to be manually done for it to run.
+  1. Uncomment the "changeowner" section at the end of the "icecast.xml" file and change the user to "www" or some other user
+  2. Change the owner of "/var/log/icecast" to be the user that icecast will run as
