@@ -88,7 +88,6 @@ then
 	echo "Failed to create jail"
 	exit 1
 fi
-rm /tmp/pkg.json
 
 #####
 #
