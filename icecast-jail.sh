@@ -112,7 +112,7 @@ then
 	echo "Failed to create jail"
 	exit 1
 fi
-if [ -z "${POOL_PATH}/icecast" ]; then
+if [ "$(ls -A "${POOL_PATH}"/icecast)" ]; then
 iocage exec "${JAIL_NAME}" cp /usr/local/etc/icecast.xml* /usr/local/etc/icecast/
 fi
 iocage exec "${JAIL_NAME}" sysrc icecast_config="/usr/local/etc/icecast/icecast.xml"
