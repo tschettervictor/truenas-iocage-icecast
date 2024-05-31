@@ -97,9 +97,9 @@ fi
 
 # Create and mount directories
 mkdir -p "${POOL_PATH}"/icecast
-iocage exec "${JAIL_NAME}" mkdir -p /usr/local/etc/icecast
+iocage exec "${JAIL_NAME}" mkdir -p /usr/local/www/icecast
 iocage exec "${JAIL_NAME}" mkdir -p /var/log/icecast
-iocage fstab -a "${JAIL_NAME}" "${POOL_PATH}"/icecast /usr/local/etc/icecast nullfs rw 0 0
+iocage fstab -a "${JAIL_NAME}" "${POOL_PATH}"/icecast /usr/local/www/icecast nullfs rw 0 0
 
 #####
 #
@@ -113,9 +113,9 @@ then
 	exit 1
 fi
 if ! [ "$(ls -A "${POOL_PATH}/icecast")" ]; then
-    iocage exec "${JAIL_NAME}" cp /usr/local/etc/icecast.xml /usr/local/etc/icecast/
+    iocage exec "${JAIL_NAME}" cp /usr/local/etc/icecast.xml /usr/local/www/icecast/
 fi
-iocage exec "${JAIL_NAME}" sysrc icecast_config="/usr/local/etc/icecast/icecast.xml"
+iocage exec "${JAIL_NAME}" sysrc icecast_config="/usr/local/www/icecast/icecast.xml"
 iocage exec "${JAIL_NAME}" sysrc icecast_enable="YES"
 
 # Restart
